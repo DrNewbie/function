@@ -1,0 +1,7 @@
+-- In order to avoid Re-Typing File Path
+cd <CompleteFilePath to Release Folder> -- Leave Space after cd (copy paste the path)
+
+-- CMD Prompts
+luadec yourfile.luac>yourfile.lua -- Not clean Decompile
+luadec -dg yourfile.luac>yourfile.lua -- Clean Decompile
+
