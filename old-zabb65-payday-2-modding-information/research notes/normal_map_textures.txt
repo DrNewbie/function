@@ -1,0 +1,9 @@
+The "normal" maps that are used within the engine are two channel uncompressed DDS files.
+These files contain only a red channel and an alpha channel. Both channels are 8 bits and are masked as follows.
+R = 0x00FF
+A = 0xFF00
+This means that each pixel is 16 bytes in size. The usage of the red and alpha channels is currently unknown.
+This appears to be a height map. Perhaps these are used for parallax mapping?
+
+The gimp dds plugin 2.2.x is capable of loading these files correctly. https://code.google.com/p/gimp-dds/downloads/list
+Saving as L8A8 is the correct format, but requires minor header fixups before the file can be used in game. No compression. Generate mipmaps.

@@ -1,0 +1,18 @@
+render_settings.xml
+
+<variable name="shadow_quality" value="high/disabled"/>
+<variable name="effect_quality" value="high/disabled"/>
+<variable name="post_effect_quality" value="high/disables"/>
+<variable name="anti_aliasing" value="true"/>
+<variable name="dynamic_lights" value="true"/>
+<variable name="brightness" value="1"/>
+<variable name="max_anisotropy" value="8"/>
+<variable name="texture_quality_default" value="high/disabled"/>
+
+dieselx.cfg
+[all]
+lowres_lighting = true
+
+context.xml
+<threaded_renderer value="false"/>
+<physics settings="settings/physics_settings" fps="60" physx_effects="software" multithreaded="true"/>

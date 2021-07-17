@@ -1,0 +1,53 @@
+Wwise ADPCM is a fixed block size non-interleaved ADPCM codec that produces 64 samples per 36 bytes of input.
+The BlockAlignment is set to 36*channels
+DataRate is (SampleRate / 64) * BlockAlignment then rounded up to multiple of 4.
+Bits per sample should be 4.
+
+Data structure for each chunk of samples is:
+S16 seed_sample
+U8 seed_step
+U8 unused
+U8 samples[63]
+
+
+Decoding sample for interleaved S16 PCM.
+
+S32 sample_number = 0
+S16 previous_sample = seed_sample
+output[2*sample_number++ + channel] = previous_sample
+U8 previous_step_index = seed_step_index
+for sample in samples:
+	previous_sample = DecodeSample(sample & 0xF, previous_sample, step_table[previous_step_index])
+	output[2*sample_number++ + channel] = previous_sample
+	previous_step_index = NextStepIndex(sample & 0xF, previous_step_index)
+
+DecodeSample(sample, previous_sample, step):
+	new_sample = step * (2 * (sample & 7) + 1)
+	new_sample = ((new_sample & 7) + new_sample) >> 3
+	if sample & 8:
+		new_sample = -new_sample
+	new_sample2 = new_sample + previous_sample
+	if new_sample2 > 32767:
+		new_sample2 = 32767
+	elif new_sample2 < -32768:
+		new_sample2 = -32768
+	return new_sample2
+
+
+NextStepIndex(sample, previous_step):
+	next_step = previous_step + next_step_table[sample]
+	if next_step > 88:
+		next_step = 88
+	elif next_step < 0:
+		next_step = 0
+	return next_step
+
+next_step_table = [-1, -1, -1, -1, 2, 4, 6, 8, -1, -1, -1, -1, 2, 4, 6, 8]
+step_table = [7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23, 25, 28, 31, 34,
+        37, 41, 45, 50, 55, 60, 66, 73, 80, 88, 97, 107, 118, 130, 143,
+        157, 173, 190, 209, 230, 253, 279, 307, 337, 371, 408, 449, 494,
+        544, 598, 658, 724, 796, 876, 963, 1060, 1166, 1282, 1411, 1552,
+        1707, 1878, 2066, 2272, 2499, 2749, 3024, 3327, 3660, 4026,
+        4428, 4871, 5358, 5894, 6484, 7132, 7845, 8630, 9493, 10442,
+        11487, 12635, 13899, 15289, 16818, 18500, 20350, 22385, 24623,
+        27086, 29794, 32767]

@@ -1,0 +1,31 @@
+PAYDAY 2 Package File Format
+Package files are simply encoded xml files which are raw serializations of Lua data.
+All values not listed are assumed to be junk of some kind, as their meaning has never been determained.
+All offsets are in decimal.
++12 Offset to number section
++28 Offset to string section
++44 Offset to Vector3 section
++60 Offset to quaternion section
++76 Offset to idstring section(uint64)
++92 Offset to table section
++100 Start of script data.
+
+Script data entries are little endian and encoded as follows.
+type = item >> 24
+value = item & 0xFFFFFF
+
+Type 0: Nil
+Type 1: False
+Type 2: True
+Type 3: Float
+Float is looked up as section offset + 4*value
+Type 4: String
+String is looked up as section offset + 8*value + 4
+Type 5: Vector3
+Vector3 is looked up as section offset + 12*value
+Type 6: Quaternion
+Quaternion is looked up as section offset + 16*value
+Type 7: idstring
+idstring is looked up as section offset + 8*value
+Type 8: Table
+Table is looked up as section offset + 20*value

@@ -1,0 +1,8 @@
+Bundle files are named the little endian output of a lookup8 hash over the package path.
+Special package names that are preloaded by the engine:
+engine-package
+lua-package
+
+Most other packages begin with "packages/"
+
+TODO: Compile list of packages and their corresponding mappings to bundle names.

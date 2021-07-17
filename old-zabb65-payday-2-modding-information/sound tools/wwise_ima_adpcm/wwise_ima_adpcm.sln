@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wwise_ima_adpcm", "wwise_ima_adpcm\wwise_ima_adpcm.csproj", "{A8CFE4F1-8877-449A-951A-4715579AE5FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8CFE4F1-8877-449A-951A-4715579AE5FE}.Debug|x86.ActiveCfg = Debug|x86
+		{A8CFE4F1-8877-449A-951A-4715579AE5FE}.Debug|x86.Build.0 = Debug|x86
+		{A8CFE4F1-8877-449A-951A-4715579AE5FE}.Release|x86.ActiveCfg = Release|x86
+		{A8CFE4F1-8877-449A-951A-4715579AE5FE}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

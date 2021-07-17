@@ -1,0 +1,21 @@
+int32 number_of_header_entries
+Header entries are 32 bytes long.
+At 0x8 there is an int32 that is an offset from the start of the file to the first entry.
+
+Header entry:
+int64 unit_path //0
+float unknown //8
+int32 instance_count //12
+int32 unknown //16
+int32 offset_to_instance //20. From start of buffer.
+int32 allocator_pointer //24. Allocator, unused for normal use
+int32 unknown //28
+
+Instance entry:
+float position_x //0
+float position_y //4
+float position_z //8
+float rotation_x //12
+float rotation_y //16
+float rotation_z //20
+float rotation_w //24
